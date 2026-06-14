@@ -30,9 +30,9 @@ img{max-width:100%;display:block}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
 .nav-links a:hover::after{width:100%}
 .nav-links a:hover{color:var(--accent)}
-.nav-cta{background:var(--accent);color:#111;padding:10px 24px;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:.8rem;transition:all .2s;border:1px solid var(--accent)}
+.nav-cta{background:var(--accent);color:#111;padding:10px 24px;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:.8rem;transition:all .2s;border:1px solid var(--accent);display:flex;align-items:center}
 .nav-cta:hover{background:transparent;color:var(--accent)}
-.mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+.mobile-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px}
 
 /* PAGE HEADER */
 .page-header{padding:140px 40px 80px;text-align:center;background:linear-gradient(160deg,#111 0%,#1a1815 50%,#1a1a1a 100%);position:relative}
@@ -48,12 +48,11 @@ img{max-width:100%;display:block}
 section{padding:100px 40px}
 .section-width{max-width:1200px;margin:0 auto}
 .section-tag{font-family:'Oswald',sans-serif;letter-spacing:4px;text-transform:uppercase;font-size:.8rem;color:var(--accent);margin-bottom:12px}
-.section-subtitle{color:var(--text-muted);max-width:500px;margin:0 auto;font-size:1rem}
 
 /* ABOUT INTRO */
 .about-intro .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.about-portrait{aspect-ratio:3/4;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;font-size:.9rem;border:1px solid var(--border);position:relative;overflow:hidden}
-.about-portrait::after{content:'🔪';font-size:8rem;opacity:.1;position:absolute}
+.about-portrait{aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border)}
+.about-portrait img{width:100%;height:100%;object-fit:cover;filter:brightness(.8)}
 .about-text h2{font-family:'Oswald',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:1px;margin-bottom:20px}
 .about-text h2 span{color:var(--accent)}
 .about-text p{color:var(--text-muted);margin-bottom:18px;font-size:1rem;line-height:1.9}
@@ -73,7 +72,7 @@ section{padding:100px 40px}
 .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .value-card{text-align:center;padding:40px 24px;background:var(--primary-light);border:1px solid var(--border);transition:all .3s}
 .value-card:hover{transform:translateY(-3px);border-color:var(--accent)}
-.value-icon{font-size:2.4rem;margin-bottom:16px}
+.value-icon{width:36px;height:36px;margin:0 auto 16px;color:var(--accent)}
 .value-card h4{font-family:'Oswald',sans-serif;font-size:1.1rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;color:#fff}
 .value-card p{font-size:.88rem;color:var(--text-muted);line-height:1.6}
 
@@ -91,7 +90,7 @@ section{padding:100px 40px}
 .cta-section h2{font-family:'Oswald',sans-serif;font-size:clamp(1.6rem,3.5vw,2.5rem);letter-spacing:1px;margin-bottom:16px}
 .cta-section h2 span{color:var(--accent)}
 .cta-section p{color:var(--text-muted);margin-bottom:32px;font-size:1.05rem}
-.btn-primary{background:var(--accent);color:#111;padding:16px 36px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;border:2px solid var(--accent);transition:all .2s;display:inline-block}
+.btn-primary{background:var(--accent);color:#111;padding:16px 36px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;border:2px solid var(--accent);transition:all .2s;display:inline-flex;align-items:center}
 .btn-primary:hover{background:transparent;color:var(--accent)}
 
 /* FOOTER */
@@ -128,14 +127,16 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="nav-logo">ANDRO<span>J.</span></div>
+  <a href="index.html" class="nav-logo">ANDRO<span>J.</span></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="index.html#services">Knives</a></li>
     <li><a href="contact.html" class="nav-cta">Commission</a></li>
   </ul>
-  <button class="mobile-toggle" id="mobileToggle">☰</button>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
 </nav>
 
 <!-- PAGE HEADER -->
@@ -152,14 +153,14 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
   <div class="section-width">
     <div class="about-grid">
       <div class="about-portrait">
-        <span>Artisan Portrait</span>
+        <img src="https://images.pexels.com/photos/8327594/pexels-photo-8327594.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Craftsman's hands working with precision tools on a workbench">
       </div>
       <div class="about-text">
         <div class="section-tag">the story</div>
         <h2>Andro <span>Joubert</span></h2>
-        <p>Andro Joubert is a young, ambitious knifemaker from South Africa who made the bold decision to turn his lifelong passion into a full-time craft. On December 1st, 2024, he officially committed to making knives professionally — and hasn't looked back since.</p>
-        <p>His journey didn't happen overnight. Andro trained under the guidance of Jaco de Kock, one of South Africa's most respected custom knifemakers. In Jaco's shop, Andro learned the fundamentals of precision blade work — from hollow grinding to the intricate mechanics of framelock and linerlock folding knives.</p>
-        <p>Every day brings something new — a new technique to master, a new material to explore, a new design to push forward. Andro puts his heart and soul into every detail of his knives, ensuring each one that leaves his workshop meets his exacting standards.</p>
+        <p>Andro Joubert is a young, ambitious knifemaker from South Africa who made the bold decision to turn his lifelong passion into a full-time craft. On December 1st, 2024, he officially committed to making knives professionally, and has not looked back since.</p>
+        <p>His journey did not happen overnight. Andro trained under the guidance of Jaco de Kock, one of South Africa's most respected custom knifemakers. In Jaco's shop, Andro learned the fundamentals of precision blade work, from hollow grinding to the intricate mechanics of framelock and linerlock folding knives.</p>
+        <p>Every day brings something new: a new technique to master, a new material to explore, a new design to push forward. Andro puts his heart and soul into every detail of his knives, ensuring each one that leaves his workshop meets his exacting standards.</p>
         <p>His brother works on a farm in the USA and regularly takes a bagful of Andro's knives across the Atlantic. This connection has quietly given Andro's work an international presence, with his blades finding homes well beyond South African borders.</p>
       </div>
     </div>
@@ -178,19 +179,19 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
         <div class="timeline-dot"></div>
         <div class="timeline-year">4 YEARS</div>
         <h4>Working in the USA</h4>
-        <p>Andro spent approximately 4 years working on a farm in Arkansas, USA. This experience broadened his perspective and deepened his appreciation for quality tools — fuel that would later feed his knifemaking fire.</p>
+        <p>Andro spent approximately 4 years working on a farm in Arkansas, USA. This experience broadened his perspective and deepened his appreciation for quality tools, fuel that would later feed his knifemaking fire.</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-year">2019-2023</div>
         <h4>Learning the Craft</h4>
-        <p>Through years of dedicated practice and mentorship under Jaco de Kock, Andro developed his skills — from basic fixed blades to complex titanium framelock mechanisms with precision-fit carbon fiber components.</p>
+        <p>Through years of dedicated practice and mentorship under Jaco de Kock, Andro developed his skills, from basic fixed blades to complex titanium framelock mechanisms with precision-fit carbon fiber components.</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-year">DEC 2024</div>
         <h4>Goes Full-Time</h4>
-        <p>On December 1st, 2024, Andro made the life-changing decision to pursue knifemaking as his full-time profession. What started as a dream became a daily reality — and he's never been happier.</p>
+        <p>On December 1st, 2024, Andro made the life-changing decision to pursue knifemaking as his full-time profession. What started as a dream became a daily reality, and he has never been happier.</p>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
@@ -211,24 +212,24 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
     </div>
     <div class="values-grid">
       <div class="value-card">
-        <div class="value-icon">🔍</div>
+        <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <h4>Obsessive Detail</h4>
         <p>Every edge, every fit, every finish is scrutinized. Nothing leaves the workshop unless it meets Andro's exacting standards.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">🧬</div>
+        <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <h4>Continuous Growth</h4>
-        <p>Every knife is a learning opportunity. Andro's skills evolve with each project — the next is always better than the last.</p>
+        <p>Every knife is a learning opportunity. Andro's skills evolve with each project. The next is always better than the last.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">✋</div>
+        <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <h4>Truly Handmade</h4>
         <p>No CNC shortcuts. Every blade is shaped, ground, and finished by hand. Each piece carries the mark of its maker.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">💬</div>
+        <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <h4>Open Communication</h4>
-        <p>Andro works closely with collectors. Your commission is a collaboration — your vision brought to life through his hands.</p>
+        <p>Andro works closely with collectors. Your commission is a collaboration, your vision brought to life through his hands.</p>
       </div>
     </div>
   </div>
@@ -239,23 +240,26 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
   <div class="section-width">
     <div style="text-align:center;margin-bottom:50px">
       <div class="section-tag">materials</div>
-      <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;letter-spacing:1px;color:var(--primary-dark)">Materials & Craft</h2>
+      <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;letter-spacing:1px;color:var(--primary-dark)">Materials &amp; Craft</h2>
     </div>
     <div class="craft-grid">
       <div class="craft-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         <h4>Blade Steel</h4>
-        <p>RWL34 stainless steel — a high-performance powder metallurgy steel known for excellent edge retention, corrosion resistance, and ease of sharpening.</p>
+        <p>RWL34 stainless steel, a high-performance powder metallurgy steel known for excellent edge retention, corrosion resistance, and ease of sharpening.</p>
         <div class="craft-spec">Premium Stainless</div>
       </div>
       <div class="craft-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         <h4>Handle Materials</h4>
         <p>Titanium, carbon fiber, G10 composites. Industrial-grade materials selected for durability, weight, and aesthetics. Vapor-blasted or satin finishes.</p>
         <div class="craft-spec">Space-Age Composites</div>
       </div>
       <div class="craft-card">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         <h4>Locking Mechanisms</h4>
         <p>Precision-engineered framelock and linerlock systems. Smooth deployment, rock-solid lockup, and buttery action are non-negotiable.</p>
-        <div class="craft-spec">Framelock & Linerlock</div>
+        <div class="craft-spec">Framelock &amp; Linerlock</div>
       </div>
     </div>
   </div>
@@ -265,7 +269,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
 <section class="cta-section">
   <h2>Every Knife Starts with a <span>Conversation</span></h2>
   <p>Reach out to Andro and start planning your custom build.</p>
-  <a href="contact.html" class="btn-primary">Contact Andro →</a>
+  <a href="contact.html" class="btn-primary">Contact Andro</a>
 </section>
 
 <!-- FOOTER -->
@@ -273,7 +277,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
   <div class="footer-grid">
     <div class="footer-brand">
       <h3>ANDRO<span>J.</span></h3>
-      <p>Handmade custom folding knives from South Africa. Titanium framelocks, carbon fiber bolsters, and RWL34 steel — crafted with precision and passion.</p>
+      <p>Handmade custom folding knives from South Africa. Titanium framelocks, carbon fiber bolsters, and RWL34 steel, crafted with precision and passion.</p>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
@@ -302,23 +306,22 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 <span>Andro Joubert</span> Handmade Knives · All Rights Reserved · South Africa
+    &copy; 2026 <span>Andro Joubert</span> Handmade Knives &middot; All Rights Reserved &middot; South Africa
   </div>
 </footer>
 
 <script>
-window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
-});
 const mt=document.getElementById('mobileToggle');
 const nl=document.getElementById('navLinks');
 mt.addEventListener('click',()=>{
   nl.classList.toggle('open');
-  mt.textContent=nl.classList.contains('open')?'✕':'☰';
+  mt.innerHTML=nl.classList.contains('open')
+    ?'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+    :'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
 });
 nl.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{
   nl.classList.remove('open');
-  mt.textContent='☰';
+  mt.innerHTML='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
 }));
 </script>
 </body>
