@@ -12,7 +12,12 @@
 <meta property="og:url" content="https://andro-joubert.pages.dev/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Andro Joubert Handmade Knives">
+<meta property="og:image" content="https://andro-joubert.pages.dev/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://andro-joubert.pages.dev/images/og-image.jpg">
+<link rel="preload" as="image" href="images/fixed-blade.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +27,7 @@
   --primary:#1a1a1a;--primary-dark:#111;--primary-light:#2a2a2a;
   --accent:#c8922a;--accent-dark:#a87520;--accent-light:#e0a838;
   --surface:#f5f3ef;--surface-dark:#e8e4dc;
-  --text:#e8e4dc;--text-muted:#9a9590;--text-dark:#2a2825;
+  --text:#e8e4dc;--text-muted:#b0aba5;--text-dark:#2a2825;
   --border:#3a3632;
 }
 html{scroll-behavior:smooth}
@@ -130,8 +135,8 @@ section{padding:100px 40px}
 /* FOOTER */
 footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 30px}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 40px}
-.footer-brand h3{font-family:'Oswald',sans-serif;font-size:1.4rem;letter-spacing:3px;color:#fff;margin-bottom:12px}
-.footer-brand h3 span{color:var(--accent)}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:1.4rem;letter-spacing:3px;color:#fff;margin-bottom:12px}
+.footer-logo span{color:var(--accent)}
 .footer-brand p{color:var(--text-muted);font-size:.9rem;line-height:1.7}
 .footer-col h4{font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
 .footer-col ul{list-style:none}
@@ -175,6 +180,85 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Andro Joubert Knife Models",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Product",
+        "name": "AJF1 Titanium Linerlock",
+        "description": "Andro's flagship titanium frame with vapor-blasted finish. Carbon fiber bolsters with G10 liners and RWL34 blade steel. Full hollow grind for a razor edge.",
+        "image": "https://images.pexels.com/photos/4588603/pexels-photo-4588603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "material": "Titanium, Carbon Fiber, RWL34 Steel",
+        "offers": {
+          "@type": "Offer",
+          "price": "12500",
+          "priceCurrency": "ZAR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Product",
+        "name": "Carbon Fiber Folder",
+        "description": "Lightweight carbon fiber handle scales with satin RWL34 blade. Copper accents and 304 stainless bolsters. A modern EDC masterpiece.",
+        "image": "https://images.pexels.com/photos/7085726/pexels-photo-7085726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "material": "Carbon Fiber, RWL34 Steel, Copper, 304 Stainless Steel",
+        "offers": {
+          "@type": "Offer",
+          "price": "14000",
+          "priceCurrency": "ZAR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Product",
+        "name": "Custom Request",
+        "description": "Tell Andro your vision. From blade steel to handle material, every detail is tailored to your specifications. Built from scratch, one at a time.",
+        "image": "https://images.pexels.com/photos/36003964/pexels-photo-36003964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "ZAR",
+          "availability": "https://schema.org/PreOrder"
+        }
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://andro-joubert.pages.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Knives",
+      "item": "https://andro-joubert.pages.dev/#services"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -195,7 +279,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://raw.githubusercontent.com/aitheautomators-maker/andro-joubert-website/main/images/fixed-blade.jpg" alt="Handmade fixed blade knife by Andro Joubert">
+    <img src="https://raw.githubusercontent.com/aitheautomators-maker/andro-joubert-website/main/images/fixed-blade.jpg" alt="Handmade fixed blade knife by Andro Joubert" fetchpriority="high" decoding="async">
   </div>
   <div class="hero-content">
     <div class="hero-badge">
@@ -222,7 +306,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
     <div class="grid-3">
       <div class="service-card">
         <div class="service-card-img">
-          <img src="https://images.pexels.com/photos/4588603/pexels-photo-4588603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Close-up of a handmade knife blade with satin finish">
+          <img src="https://images.pexels.com/photos/4588603/pexels-photo-4588603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" srcset="https://images.pexels.com/photos/4588603/pexels-photo-4588603.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=470 470w, https://images.pexels.com/photos/4588603/pexels-photo-4588603.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=940 940w, https://images.pexels.com/photos/4588603/pexels-photo-4588603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w" sizes="(max-width: 900px) 100vw, 33vw" alt="Close-up of a handmade knife blade with satin finish" loading="lazy" decoding="async">
         </div>
         <div class="service-card-body">
           <h3>AJF1 Titanium Linerlock</h3>
@@ -232,7 +316,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
       </div>
       <div class="service-card">
         <div class="service-card-img">
-          <img src="https://images.pexels.com/photos/7085726/pexels-photo-7085726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Carbon fiber texture close-up in black and grey weave pattern">
+          <img src="https://images.pexels.com/photos/7085726/pexels-photo-7085726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" srcset="https://images.pexels.com/photos/7085726/pexels-photo-7085726.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=470 470w, https://images.pexels.com/photos/7085726/pexels-photo-7085726.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=940 940w, https://images.pexels.com/photos/7085726/pexels-photo-7085726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w" sizes="(max-width: 900px) 100vw, 33vw" alt="Carbon fiber texture close-up in black and grey weave pattern" loading="lazy" decoding="async">
         </div>
         <div class="service-card-body">
           <h3>Carbon Fiber Folder</h3>
@@ -242,7 +326,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
       </div>
       <div class="service-card">
         <div class="service-card-img">
-          <img src="https://images.pexels.com/photos/36003964/pexels-photo-36003964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Metal grinding with bright sparks flying in a workshop">
+          <img src="https://images.pexels.com/photos/36003964/pexels-photo-36003964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" srcset="https://images.pexels.com/photos/36003964/pexels-photo-36003964.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=470 470w, https://images.pexels.com/photos/36003964/pexels-photo-36003964.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=940 940w, https://images.pexels.com/photos/36003964/pexels-photo-36003964.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w" sizes="(max-width: 900px) 100vw, 33vw" alt="Metal grinding with bright sparks flying in a workshop" loading="lazy" decoding="async">
         </div>
         <div class="service-card-body">
           <h3>Custom Request</h3>
@@ -259,7 +343,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
   <div class="section-width">
     <div class="about-grid">
       <div class="about-img-wrap">
-        <img src="https://raw.githubusercontent.com/aitheautomators-maker/andro-joubert-website/main/images/andro-joubert.jpg" alt="Andro Joubert - Handmade Knifemaker">
+        <img src="https://raw.githubusercontent.com/aitheautomators-maker/andro-joubert-website/main/images/andro-joubert.jpg" alt="Andro Joubert - Handmade Knifemaker" loading="lazy" decoding="async">
       </div>
       <div class="about-text">
         <div class="section-tag">the maker</div>
@@ -361,7 +445,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
         </div>
       </div>
       <div class="map-placeholder">
-        <img src="https://images.pexels.com/photos/15018886/pexels-photo-15018886.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wide shot of a craftsman workshop with tools and workbench">
+        <img src="https://images.pexels.com/photos/15018886/pexels-photo-15018886.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" srcset="https://images.pexels.com/photos/15018886/pexels-photo-15018886.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=470 470w, https://images.pexels.com/photos/15018886/pexels-photo-15018886.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=940 940w, https://images.pexels.com/photos/15018886/pexels-photo-15018886.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 1880w" sizes="(max-width: 900px) 100vw, 50vw" alt="Wide shot of a craftsman workshop with tools and workbench" loading="lazy" decoding="async">
         <div class="map-placeholder-overlay">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8922a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span>South Africa</span>
@@ -375,7 +459,7 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <h3>ANDRO<span>J.</span></h3>
+      <div class="footer-logo">ANDRO<span>J.</span></div>
       <p>Handmade custom folding knives from South Africa. Titanium framelocks, carbon fiber bolsters, and RWL34 steel, crafted with precision and passion.</p>
     </div>
     <div class="footer-col">
