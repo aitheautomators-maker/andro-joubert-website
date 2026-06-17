@@ -162,7 +162,12 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
       <div class="contact-form">
         <h3>Send an <span>Enquiry</span></h3>
         <p class="form-subtitle">Fill in the form below and Andro will get back to you as soon as possible.</p>
-        <form onsubmit="handleSubmit(event)">
+        <form id="contactForm" novalidate>
+          <!-- Honeypot field - hidden from real users, bots fill it -->
+          <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true">
+            <label>Website</label>
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-group">
             <label>Full Name *</label>
             <input type="text" name="name" required placeholder="Your full name">
@@ -190,7 +195,8 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
             <label>Tell Andro About Your Vision *</label>
             <textarea name="message" required placeholder="Describe the knife you have in mind: blade style, handle materials, intended use, or any specific requirements..."></textarea>
           </div>
-          <button type="submit" class="form-submit">Send Enquiry</button>
+          <div id="formError" style="display:none;color:#e05050;font-size:.85rem;margin-bottom:16px;padding:12px 16px;background:rgba(224,80,80,.1);border:1px solid rgba(224,80,80,.3)"></div>
+          <button type="submit" class="form-submit" id="submitBtn">Send Enquiry</button>
         </form>
       </div>
       <div class="contact-sidebar">
@@ -304,32 +310,122 @@ footer{background:#0a0a0a;border-top:1px solid var(--border);padding:60px 40px 3
 </footer>
 
 <script>
-function handleSubmit(e){
+// Contact form submission to Cloudflare Worker
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const btn=e.target.querySelector('.form-submit');
-  btn.textContent='Message Sent';
-  btn.style.background='#2d8a4e';
-  btn.style.borderColor='#2d8a4e';
-  btn.style.color='#fff';
-  setTimeout(()=>{
-    btn.textContent='Send Enquiry';
-    btn.style.background='';
-    btn.style.borderColor='';
-    btn.style.color='';
-    e.target.reset();
-  },3000);
-}
-const mt=document.getElementById('mobileToggle');
-const nl=document.getElementById('navLinks');
-mt.addEventListener('click',()=>{
-  nl.classList.toggle('open');
-  mt.innerHTML=nl.classList.contains('open')
-    ?'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
-    :'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+
+  const form = this;
+  const btn = document.getElementById('submitBtn');
+  const errorDiv = document.getElementById('formError');
+  const originalText = btn.textContent;
+
+  errorDiv.style.display = 'none';
+  errorDiv.textContent = '';
+
+  // Validate required fields
+  const required = form.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(field => {
+    if (!field.value.trim()) {
+      valid = false;
+      field.style.borderColor = '#e05050';
+    } else {
+      field.style.borderColor = '';
+    }
+  });
+
+  if (!valid) {
+    errorDiv.textContent = 'Please fill in all required fields.';
+    errorDiv.style.display = 'block';
+    return;
+  }
+
+  // Email validation
+  const emailField = form.querySelector('[name="email"]');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailField.value.trim())) {
+    errorDiv.textContent = 'Please enter a valid email address.';
+    errorDiv.style.display = 'block';
+    emailField.style.borderColor = '#e05050';
+    return;
+  }
+
+  // Collect form data
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => { data[key] = value; });
+
+  // Loading state
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '0.7';
+  btn.style.cursor = 'wait';
+
+  try {
+    const response = await fetch('https://andro-joubert-form.aitheautomators.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      btn.textContent = 'Message Sent';
+      btn.style.background = '#2d8a4e';
+      btn.style.borderColor = '#2d8a4e';
+      btn.style.color = '#fff';
+      btn.style.opacity = '1';
+      btn.style.cursor = 'default';
+      form.reset();
+
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+        btn.style.opacity = '';
+        btn.style.cursor = '';
+        btn.disabled = false;
+      }, 4000);
+    } else {
+      throw new Error(result.error || 'Something went wrong. Please try again.');
+    }
+  } catch (err) {
+    errorDiv.textContent = err.message || 'Failed to send. Please try again or contact Andro directly.';
+    errorDiv.style.display = 'block';
+    btn.textContent = originalText;
+    btn.style.opacity = '1';
+    btn.style.cursor = 'pointer';
+    btn.disabled = false;
+  }
 });
-nl.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{
+
+// Clear error styling on input
+document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(field => {
+  field.addEventListener('input', function() {
+    this.style.borderColor = '';
+  });
+});
+
+// Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile nav with SVG icons
+const mt = document.getElementById('mobileToggle');
+const nl = document.getElementById('navLinks');
+const hamburgerIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+const closeIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+mt.innerHTML = hamburgerIcon;
+mt.addEventListener('click', () => {
+  nl.classList.toggle('open');
+  mt.innerHTML = nl.classList.contains('open') ? closeIcon : hamburgerIcon;
+});
+nl.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
   nl.classList.remove('open');
-  mt.innerHTML='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+  mt.innerHTML = hamburgerIcon;
 }));
 </script>
 </body>
