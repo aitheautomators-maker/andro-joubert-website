@@ -1,0 +1,16 @@
+name = "andro-joubert-form"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# Route: attach to a subdomain or custom route
+# Uncomment and adjust once you know the route pattern:
+# routes = [
+#   { pattern = "andro-joubert.pages.dev/api/contact", zone_name = "pages.dev" }
+# ]
+
+[vars]
+# Will be set via secret instead for security:
+# MAKE_WEBHOOK_URL = "https://hook..."
+
+# To set the webhook URL as a secret:
+# wrangler secret put MAKE_WEBHOOK_URL
